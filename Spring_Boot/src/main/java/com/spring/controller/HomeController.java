@@ -16,10 +16,10 @@ public class HomeController {
 	@Autowired
 	productDAO proDao;
 
-	@RequestMapping("/product")
-	public String product(Model model) {
+	@RequestMapping("/home")
+	public String home(Model model) {
 //		List products = proDao.findAll();
 //		model.addAttribute("products", products);
-		return "/view/index.jsp";
+		return "/showUser";
 	}
 }
