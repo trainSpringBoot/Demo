@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 
 import com.spring.bean.category;
 
-@Controller
 public interface categoryDAO extends JpaRepository<category, String> {
-
+	
+	
 }

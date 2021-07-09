@@ -1,6 +1,5 @@
 package com.spring.controller;
 
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,17 +28,22 @@ public class LoginController {
 	
 	@PostMapping("login")
 	public String get(Model model, @RequestParam("username")String username, @RequestParam("password")String password) {
-		users  us = useDao.findById(username).orElse(null);
+			users  us = useDao.findById(username).orElse(null);
 			if (us == null) {
 				req.setAttribute("erorr", "Tài khoản này không tồn tại!");
 				// return null;
 			}else {
-			if((username.equalsIgnoreCase(us.getUsername())) && password.equalsIgnoreCase(us.getPassword())) {
-				System.out.println("login thành công");
-				return "redirect:/index/user";
-			}else {
-				System.out.println("login thất bại");
-				model.addAttribute("erorr","Mật khẩu không chính xác");
+			try {
+				if((username.equalsIgnoreCase(us.getUsername())) && password.equalsIgnoreCase(us.getPassword())) {
+					System.out.println("login thành công");
+					return "redirect:/index/user";
+				}else {
+					System.out.println("login thất bại");
+					model.addAttribute("erorr","Mật khẩu không chính xác");
+				}
+			} catch (Exception e) {
+				System.out.println(e);
+				throw new RuntimeException(e);
 			}
 		}
 		return "login";

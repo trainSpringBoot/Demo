@@ -18,8 +18,6 @@ public class HomeController {
 
 	@RequestMapping("/home")
 	public String home(Model model) {
-//		List products = proDao.findAll();
-//		model.addAttribute("products", products);
 		return "/showUser";
 	}
 }
